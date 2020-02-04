@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MinimizeLogicTerms.iml" filepath="$PROJECT_DIR$/MinimizeLogicTerms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Minimizer/Minimizer.iml" filepath="$PROJECT_DIR$/Minimizer/Minimizer.iml" />
+    </modules>
+  </component>
+</project>
