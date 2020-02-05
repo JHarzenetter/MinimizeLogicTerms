@@ -9,7 +9,7 @@ public class Term {
     private String variable_F;
     private String variable_G;
 
-    public Term (String variable_A, String variable_B, String variable_C, String variable_D, String variable_E, String variable_F, String variable_G){
+    public Term(String variable_A, String variable_B, String variable_C, String variable_D, String variable_E, String variable_F, String variable_G) {
         this.variable_A = variable_A;
         this.variable_B = variable_B;
         this.variable_C = variable_C;
@@ -21,65 +21,112 @@ public class Term {
         completeTerm = variable_A + "*" + variable_B + "*" + variable_C + "*" + variable_D + "*" + variable_E + "*" + variable_F + "*" + variable_G;
     }
 
-    public Term negate_A(Term givenTerm){
-        if(givenTerm.getVariable_A() != null){
+    public Term(String completeTerm){
+        this.completeTerm = completeTerm;
+    }
+
+    // activate
+    public void activate_A(Term givenTerm) {
+        if (givenTerm.getVariable_A() != null) {
+            givenTerm.setVariable_A("A");
+        }
+        updateTerm();
+    }
+
+    public void activate_B(Term givenTerm) {
+        if (givenTerm.getVariable_B() != null) {
+            givenTerm.setVariable_B("B");
+        }
+        updateTerm();
+    }
+
+    public void activate_C(Term givenTerm) {
+        if (givenTerm.getVariable_C() != null) {
+            givenTerm.setVariable_C("C");
+        }
+        updateTerm();
+    }
+
+    public void activate_D(Term givenTerm) {
+        if (givenTerm.getVariable_D() != null) {
+            givenTerm.setVariable_D("D");
+        }
+        updateTerm();
+    }
+
+    public void activate_E(Term givenTerm) {
+        if (givenTerm.getVariable_E() != null) {
+            givenTerm.setVariable_E("E");
+        }
+        updateTerm();
+    }
+
+    public void activate_F(Term givenTerm) {
+        if (givenTerm.getVariable_F() != null) {
+            givenTerm.setVariable_F("F");
+        }
+        updateTerm();
+    }
+
+    public void activate_G(Term givenTerm) {
+        if (givenTerm.getVariable_G() != null) {
+            givenTerm.setVariable_G("G");
+        }
+        updateTerm();
+    }
+
+    //negate
+    public void negate_A(Term givenTerm) {
+        if (givenTerm.getVariable_A() != null) {
             givenTerm.setVariable_A("~A");
         }
-        return updateTerm();
+        updateTerm();
     }
 
-    private Term updateTerm() {
-        //TODO
-        return null;
-    }
-
-    public Term activate_A(Term givenTerm){
-        if(givenTerm.getVariable_A() != null){
-           givenTerm.setVariable_A("A");
-        }
-        return updateTerm();
-    }
-
-    public Term negate_B(Term givenTerm){
-        if(givenTerm.getVariable_B() != null){
+    public void negate_B(Term givenTerm) {
+        if (givenTerm.getVariable_B() != null) {
             givenTerm.setVariable_B("~B");
         }
-        return updateTerm();
+        updateTerm();
     }
 
-    public Term negate_C(Term givenTerm){
-        if(givenTerm.getVariable_C() != null){
+    public void negate_C(Term givenTerm) {
+        if (givenTerm.getVariable_C() != null) {
             givenTerm.setVariable_C("~C");
         }
-        return updateTerm();
+        updateTerm();
     }
 
-    public Term negate_D(Term givenTerm){
-        if(givenTerm.getVariable_D() != null){
+    public void negate_D(Term givenTerm) {
+        if (givenTerm.getVariable_D() != null) {
             givenTerm.setVariable_D("~D");
         }
-        return updateTerm();
+        updateTerm();
     }
 
-    public Term negate_E(Term givenTerm){
-        if(givenTerm.getVariable_E() != null){
+    public void negate_E(Term givenTerm) {
+        if (givenTerm.getVariable_E() != null) {
             givenTerm.setVariable_E("~E");
         }
-        return updateTerm();
+        updateTerm();
     }
 
-    public Term negate_F(Term givenTerm){
-        if(givenTerm.getVariable_F() != null){
+    public void negate_F(Term givenTerm) {
+        if (givenTerm.getVariable_F() != null) {
             givenTerm.setVariable_F("~F");
         }
-        return updateTerm();
+        updateTerm();
     }
 
-    public Term negate_G(Term givenTerm){
-        if(givenTerm.getVariable_G() != null){
+    public void negate_G(Term givenTerm) {
+        if (givenTerm.getVariable_G() != null) {
             givenTerm.setVariable_G("~G");
         }
-        return updateTerm();
+        updateTerm();
+    }
+
+    private void updateTerm() {
+        completeTerm = variable_A + "*" + variable_B + "*" + variable_C + "*" + variable_D + "*" + variable_E + "*" + variable_F + "*" + variable_G;
     }
 
     public String getVariable_A() {
