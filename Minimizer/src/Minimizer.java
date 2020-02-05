@@ -43,7 +43,19 @@ public class Minimizer {
     }
 
     private void compareTerms(){
+        //TODO: compare terms, on matching 0 and 1
+    }
 
+    private List<Term> sortTerms(){
+        //TODO: sort according to number of negations, most on top,least on bottom
+        long run_before = 10;
+        for (Term t : termTable){
+            String s = t.getCompleteTerm();
+            long number_of_Negation = s.chars().filter(ch-> ch == '~').count();
+
+        }
+
+        return null;
     }
 
     private List<Term> create_Primterms(){
