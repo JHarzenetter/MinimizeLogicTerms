@@ -1,6 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Minimizer {
 
@@ -46,22 +45,29 @@ public class Minimizer {
         //TODO: compare terms, on matching 0 and 1
     }
 
-    private List<Term> sortTerms(){
-        //TODO: sort according to number of negations, most on top,least on bottom
-        long run_before = 10;
+    public List<Term> sortTerms(){
+        Map<Term, Long> mappingNumber_of_Negations = new HashMap<>();
+        List<Term> sortedTerms = new ArrayList<>();
         for (Term t : termTable){
             String s = t.getCompleteTerm();
             long number_of_Negation = s.chars().filter(ch-> ch == '~').count();
-
+            mappingNumber_of_Negations.put(t, number_of_Negation);
+            //System.out.println(number_of_Negation);
         }
+        //mappingNumber_of_Negations.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).forEach(System.out::println);
+        mappingNumber_of_Negations.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).forEach(x->sortedTerms.add(x.getKey()));
 
-        return null;
+        /*for(Term t : sortedTerms){
+            System.out.println(t.getCompleteTerm());
+        }*/
+
+        return sortedTerms;
     }
 
     private List<Term> create_Primterms(){
+        termTable = sortTerms();
 
-
-
+        //result should be only the minimal form
         return null;
     }
 }
