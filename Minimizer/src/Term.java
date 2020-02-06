@@ -8,6 +8,7 @@ public class Term {
     private String variable_E;
     private String variable_F;
     private String variable_G;
+    private boolean isPrime;
 
     public Term(String variable_A, String variable_B, String variable_C, String variable_D, String variable_E, String variable_F, String variable_G) {
         this.variable_A = variable_A;
@@ -17,6 +18,7 @@ public class Term {
         this.variable_E = variable_E;
         this.variable_F = variable_F;
         this.variable_G = variable_G;
+        this.isPrime = false;
 
         completeTerm = variable_A + "*" + variable_B + "*" + variable_C + "*" + variable_D + "*" + variable_E + "*" + variable_F + "*" + variable_G;
     }
@@ -187,5 +189,13 @@ public class Term {
 
     public String getCompleteTerm() {
         return completeTerm;
+    }
+
+    public boolean isPrime() {
+        return isPrime;
+    }
+
+    public void setPrime(boolean prime) {
+        isPrime = prime;
     }
 }
