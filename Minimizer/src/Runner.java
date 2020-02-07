@@ -1,12 +1,17 @@
+import java.util.List;
+
 public class Runner {
     public static void main(String[] args) {
         Minimizer minimizer = new Minimizer();
         minimizer.initialize();
-        minimizer.sortTerms();
+        List<Term> a = minimizer.sortTerms();
         System.out.println("complete: " + minimizer.getAll_terms_combined());
-
-        /*for(Term t : minimizer.getTermTable()){
+        System.out.println(minimizer.compare_combine_Terms().size());
+        /*for(Term t : a){
             System.out.println(t.getCompleteTerm());
         }*/
+        for (Term t : minimizer.compare_combine_Terms()){
+            System.out.println(t.getCompleteTerm());
+        }
     }
 }
