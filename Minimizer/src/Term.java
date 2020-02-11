@@ -246,6 +246,33 @@ public class Term {
         isMarked = marked;
     }
 
+    public boolean diffEq1(Term t) {
+        int count = 0;
+        if (!this.variable_A.equals(t.getVariable_A())) {
+            count++;
+        }
+        if (!this.variable_B.equals(t.getVariable_B())) {
+            count++;
+        }
+        if (!this.variable_C.equals(t.getVariable_C())) {
+            count++;
+        }
+        if (!this.variable_D.equals(t.getVariable_D())) {
+            count++;
+        }
+        if (!this.variable_E.equals(t.getVariable_E())) {
+            count++;
+        }
+        if (!this.variable_F.equals(t.getVariable_F())) {
+            count++;
+        }
+        if (!this.variable_G.equals(t.getVariable_G())) {
+            count++;
+        }
+
+        return count == 1;
+    }
+
     @Override
     public boolean equals(Object obj) {
         Term term = (Term) obj;
