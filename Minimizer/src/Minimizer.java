@@ -8,6 +8,7 @@ public class Minimizer {
 
     private String all_terms_combined;
     private List<Term> termTable = new ArrayList<>();
+    private List<Term> primeTable = new ArrayList<>();
 
     public void initialize() {
         try {
@@ -37,20 +38,24 @@ public class Minimizer {
 
     //helper methods below
     public List<Term> compare_combine_Terms() {
-        //TODO: compare terms, on matching 0 and 1
-        Map<Term, Long> negationMapping = countNegationsPerTerm();
-        List<Term> sortedTermList = sortTerms();
+        //TODO: compare terms, on matching 0 and 1 // make method recursive and make functional for recursivity
+        Map<Term, Long> negationMapping = countNegationsPerTerm(this.termTable);
+        List<Term> sortedTermList = sortTerms(negationMapping);
+
         List<Term> combinedTerms = new ArrayList<>();
 
         for (int i = 0; i < sortedTermList.size(); i++) {
+            Term t1 = sortedTermList.get(i);
             for (int k = 0; k < sortedTermList.size(); k++) {
-                if (k == i) {
-                    continue;
-                } else {
-                    Term t1 = sortedTermList.get(i);
+                if (k != i) {
                     Term t2 = sortedTermList.get(k);
 
                     if (negationMapping.get(t1) - negationMapping.get(t2) == 1) {
+                        //System.out.println("combining Terms: " + t1.getCompleteTerm() + " and " + t2.getCompleteTerm());
+                        if(!t1.diffEq1(t2)){
+                            continue;
+                        }
+
                         String v_A = null;
                         String v_B = null;
                         String v_C = null;
@@ -61,70 +66,72 @@ public class Minimizer {
 
                         if (t1.getVariable_A() != null && t2.getVariable_A() != null) {
                             if (!(t1.getVariable_A().equals(t2.getVariable_A()))) {
-                                v_A = t2.getVariable_A();
+                                v_A = "DoCa";
                             } else {
                                 v_A = t1.getVariable_A();
                             }
                         }
                         if (t1.getVariable_B() != null && t2.getVariable_B() != null) {
                             if (!(t1.getVariable_B().equals(t2.getVariable_B()))) {
-                                v_B = t2.getVariable_B();
+                                v_B = "DoCa";
                             } else {
                                 v_B = t1.getVariable_B();
                             }
                         }
                         if (t1.getVariable_C() != null && t2.getVariable_C() != null) {
                             if (!(t1.getVariable_C().equals(t2.getVariable_C()))) {
-                                v_C = t2.getVariable_C();
+                                v_C = "DoCa";
                             } else {
                                 v_C = t1.getVariable_C();
                             }
                         }
                         if (t1.getVariable_D() != null && t2.getVariable_D() != null) {
                             if (!(t1.getVariable_D().equals(t2.getVariable_D()))) {
-                                v_D = t2.getVariable_D();
+                                v_D = "DoCa";
                             } else {
                                 v_D = t1.getVariable_D();
                             }
                         }
                         if (t1.getVariable_E() != null && t2.getVariable_E() != null) {
                             if (!(t1.getVariable_E().equals(t2.getVariable_E()))) {
-                                v_E = t2.getVariable_E();
+                                v_E = "DoCa";
                             } else {
                                 v_E = t1.getVariable_E();
                             }
                         }
                         if (t1.getVariable_F() != null && t2.getVariable_F() != null) {
                             if (!(t1.getVariable_F().equals(t2.getVariable_F()))) {
-                                v_F = t2.getVariable_F();
+                                v_F = "DoCa";
                             } else {
                                 v_F = t1.getVariable_F();
                             }
                         }
                         if (t1.getVariable_G() != null && t2.getVariable_G() != null) {
                             if (!(t1.getVariable_G().equals(t2.getVariable_G()))) {
-                                v_G = t2.getVariable_G();
+                                v_G = "DoCa";
                             } else {
                                 v_G = t1.getVariable_G();
                             }
                         }
                         Term adding = new Term(v_A, v_B, v_C, v_D, v_E, v_F, v_G);
-                        //TODO: works not as predicted!
-                        if (combinedTerms.isEmpty()) {
-                            combinedTerms.add(adding);
-                        } else if (combinedTerms.stream().noneMatch(x -> x.equals(adding))) {
-                            combinedTerms.add(adding);
-                        }
+                        combinedTerms.add(adding);
                     }
                 }
             }
+            t1.setMarked(true);
         }
+
+        for (Term t : sortedTermList){
+            if (!t.isMarked()) {
+                primeTable.add(t);
+            }
+        }
+
         return combinedTerms;
     }
 
-    public List<Term> sortTerms() {
+    public List<Term> sortTerms(Map<Term, Long> mappingNumber_of_Negations) {
         List<Term> sortedList = new ArrayList<>();
-        Map<Term, Long> mappingNumber_of_Negations = countNegationsPerTerm();
 
         List<Map.Entry<Term, Long>> sortingList = new ArrayList<>(mappingNumber_of_Negations.entrySet());
         sortingList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
@@ -137,7 +144,7 @@ public class Minimizer {
         return sortedList;
     }
 
-    private Map<Term, Long> countNegationsPerTerm() {
+    private Map<Term, Long> countNegationsPerTerm(List<Term> termTable) {
         Map<Term, Long> mappingNumber_of_Negations = new HashMap<>();
 
         for (Term t : termTable) {
@@ -159,7 +166,7 @@ public class Minimizer {
         return all_terms_combined;
     }
 
-    public List<Term> getTermTable() {
-        return termTable;
+    public List<Term> getPrimeTable() {
+        return primeTable;
     }
 }
