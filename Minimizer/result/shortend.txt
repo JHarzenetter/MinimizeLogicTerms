@@ -1,0 +1,46 @@
+a: 
+F*~E*~D*~C*~B*~A + ~G*~F*~E*C*~B*A + ~G*F*~E*~D*~C*A + ~G*~E*~D*C*B*~A + ~G*~E*~D*~C*B*A + G*~F*~E*~D*~B*A + ~F*~E*~D*C*~B*A + G*~E*~D*~C*B*~A + G*F*~E*~D*~C*~A + ~G*F*~E*~D*C*~A + G*~F*~E*~C*~B*A + G*~F*~E*~D*C*~B + ~G*~F*~E*D*C*A + ~G*F*~E*~C*B*A + ~G*F*~E*~D*C*B + ~G*F*~E*~D*B*A + G*~F*~D*C*~B*A + ~G*~E*D*C*~B*A + G*F*~E*~D*~C*B + ~G*F*~E*C*B*~A + G*~F*~E*D*~C*A + F*~E*~D*~C*B*A + ~G*F*E*~D*C*A + G*~F*~E*D*B*A + G*~F*~E*D*C*B + ~F*~E*D*C*B*A + ~G*E*~D*C*B*A + ~G*F*~D*C*B*A + G*~F*E*C*~B*A + G*~F*E*D*C*A + G*~F*D*C*B*A + ~G*F*E*C*B*A + ~G*~E*~C*~B*~A + ~G*~D*~C*~B*~A + ~G*~F*~D*~C*~A + ~G*~F*~E*~C*~A + ~F*~E*D*~C*~B + ~G*F*~D*~B*~A + ~G*~F*~E*D*~B + ~G*F*~C*~B*~A + ~G*E*~D*~B*~A + ~G*F*~D*~C*~B + ~G*~F*E*~D*~A + ~F*E*~D*~C*~A + ~F*~E*D*~B*~A + ~G*E*~D*~C*~A + ~G*~F*~D*~C*B + ~G*~E*D*~C*~A + ~G*~F*~C*B*~A + ~G*~F*E*~D*B + G*~F*D*~B*~A + ~G*D*~C*B*~A + ~G*F*D*~C*~A + ~F*D*C*~B*~A + ~G*~F*E*B*~A + ~G*E*~C*B*~A + G*~F*~E*C*~A + ~G*~F*D*C*~B + G*~F*D*~C*~B + G*~F*E*~C*~A + ~G*~F*D*~B*A + ~G*F*E*~D*~B + ~F*E*~D*~C*B + ~G*F*E*~C*~A + ~F*D*~C*~B*A + ~G*~F*E*C*~A + ~F*E*~C*B*~A + ~G*E*C*~B*~A + ~G*F*E*~B*~A + ~G*E*D*C*~A + G*~F*E*D*~B + ~F*E*D*~B*A + ~G*F*E*D*~A + ~G*F*D*B*~A + ~G*E*D*B*~A + ~G*F*D*~C*B + ~F*E*D*C*~B + ~G*F*E*D*B + ~F*~D*B*~A  
+
+b:
+F*~E*~D*~C*~B*~A + G*~E*~D*~C*B*~A + ~G*F*~E*~D*C*~A + ~G*~E*~D*C*B*~A + G*F*~E*~D*~C*~A + ~G*F*~E*C*B*~A + ~G*~E*~C*~B*~A + ~G*~F*~D*~C*~A + ~G*~D*~C*~B*~A + ~G*~F*~E*~C*~A + ~F*E*~D*~C*~A + ~G*E*~D*~C*~A + ~G*E*~D*~B*~A + ~G*F*~D*~B*~A + ~F*~E*D*~B*~A + ~G*~F*E*~D*~A + ~G*F*~C*~B*~A + ~G*~F*~C*B*~A + ~G*~E*D*~C*~A + ~F*D*C*~B*~A + ~G*F*E*~C*~A + ~G*~F*E*C*~A + ~G*D*~C*B*~A + ~G*E*C*~B*~A + G*~F*D*~B*~A + ~G*F*D*~C*~A + G*~F*~E*C*~A + ~G*E*~C*B*~A + ~G*~F*E*B*~A + ~F*E*~C*B*~A + G*~F*E*~C*~A + ~G*F*E*~B*~A + ~G*E*D*C*~A + ~G*F*D*B*~A + ~G*E*D*B*~A + ~G*F*E*D*~A + ~F*~D*B*~A
+
+c:
+~G*E*~D*~C*~B + ~G*~E*D*~C*~B + ~G*~D*~C*~B*A + ~G*~F*~C*~B + G*~F*~E*~D + G*~F*E*~C*~B + G*~E*~D*~C + ~G*~F*E*~B + ~G*~F*E*~C + ~G*~F*D*~C + ~G*~E*~D*C + ~G*~E*C*B + G*~F*~E*C + G*~F*~D*C + ~G*~F*E*D + ~G*~E*A + G*~F*E*D*~C + ~G*F*E*D*~C + ~G*F*E*~C*B + G*~F*~E*B + ~G*F*~E*C + G*~F*C*B + ~G*F*E*B*A + ~G*F*E*D*A + ~G*F*E*C*A + ~F*~D*~B + ~G*F*~D*B + ~G*F*D*~B + ~F*A + ~F*D*B
+//EXPERIMENTAL
+
+d:
+G*~F*~E*~C*~A + ~G*F*~D*~C*~B + ~G*~E*~D*~C*B + ~F*~D*~C*B*~A + ~G*~F*~E*C*~B + ~G*~E*~D*B*~A + F*~E*~D*~C*~A + ~G*~F*E*~C*~A + G*~E*~D*~C*~A + ~F*~E*~D*C*~B + ~G*~F*~D*B*~A + ~G*F*~E*~D*~A + ~G*F*~E*~D*~C + ~F*~E*C*~B*~A + G*~F*~E*~C*~B + ~E*~D*~C*B*~A + G*~F*~E*~D*~B + ~G*E*~C*~B*~A + G*~F*~E*~B*~A + ~G*F*~D*~B*~A + ~G*~F*~D*~C*B + F*~E*~D*~C*B + ~G*~F*~E*D*C + ~F*E*~D*~C*B + ~F*~E*D*C*~A + ~G*E*D*~C*~A + G*~F*~E*D*~A + ~G*~F*E*~D*B + G*~F*~D*C*~B + ~G*~E*D*C*~B + ~G*F*E*~D*~B + ~G*~D*C*B*~A + ~G*F*~E*~C*B + G*~F*~E*D*~C + ~F*E*~D*B*~A + ~G*F*~D*C*~A + ~G*F*~E*~D*B + ~G*F*~E*B*~A + G*~F*C*~B*~A + ~F*~E*D*C*B + ~G*F*D*B*~A + G*~F*D*C*~A + ~G*F*C*B*~A + ~G*E*~D*C*B + G*~F*E*C*~B + ~G*F*~D*C*B + G*~F*E*C*~A + ~G*F*D*~C*B + ~G*F*E*~D*C + G*~F*~E*D*B + G*~F*E*D*C + ~G*F*E*D*B + ~G*F*E*C*B + G*~F*D*C*B + ~F*D*~B*~A + ~F*D*~C*~B + ~G*~F*D*~B + ~G*~E*C*~A + ~F*E*D*~B
+
+e:
+~G*F*E*~D*~C*~B + ~G*~F*E*~D*~C*B + ~G*F*~E*D*C*~B + ~G*F*E*D*~C*B + ~G*~F*~C*~B*~A + ~G*D*~C*~B*~A + ~F*~E*~D*C*~A + G*~E*~D*~C*~A + G*~F*~E*~D*~B + ~G*~F*D*~C*~A + ~G*~E*~D*C*~A + ~F*~E*~D*C*~B + ~F*E*~C*~B*~A + ~G*~F*D*~C*~B + G*~F*~E*~D*~A + ~G*~F*E*~B*~A + ~G*~E*C*B*~A + G*~F*~E*B*~A + G*~F*~D*C*~B + ~G*~F*E*D*~A + ~F*~E*C*B*~A + ~F*E*D*~C*~A + G*~F*~E*C*~A + ~G*~F*E*D*~B + G*~F*~D*C*~A + ~F*E*D*~C*~B + ~G*F*~D*B*~A + ~G*F*D*~B*~A + F*~E*~D*~C*B + ~G*E*D*~B*~A + ~G*F*~E*~D*B + ~G*F*~E*C*~A + ~G*F*~D*C*B + G*~F*C*B*~A + G*~F*~E*D*B + ~F*~E*D*C*B + G*~F*D*C*B + ~F*~D*~B*~A + ~G*E*~C*~A + ~F*D*B*~A
+
+f:
+F*~E*~D*~C*B*~A + F*~E*~D*~C*~B*A + G*F*~E*~D*~C*A + ~G*F*~E*~D*C*A + ~G*~E*~D*C*B*A + G*F*~E*~D*~C*B + G*~E*~D*~C*B*A + ~G*F*~E*~D*C*B + ~G*F*~E*C*B*A + ~F*~E*~D*~B*~A + ~F*~E*~C*~B*~A + ~G*~F*~E*~B*~A + ~F*~D*C*~B*~A + ~G*F*~D*~C*~B + G*~F*~D*~B*~A + ~G*~F*~D*~C*A + ~F*D*~C*~B*~A + ~G*F*~D*~C*~A + ~G*~E*D*~B*~A + ~G*~D*~C*B*~A + ~G*~F*~E*D*~A + ~G*~F*D*~B*~A + ~G*~F*C*~B*~A + ~F*~E*D*~C*~A + ~G*~D*~C*~B*A + ~F*~E*D*~C*~B + ~G*~F*~E*D*~B + ~G*~F*~D*~C*B + G*~F*~C*~B*~A + ~G*E*~D*~C*B + ~G*F*E*~D*~C + ~G*~F*~C*B*A + ~G*F*~D*~B*A + ~G*F*E*~D*~B + ~F*~E*D*~B*A + ~G*E*~D*B*~A + ~G*F*E*~D*~A + G*~F*D*~C*~B + ~G*D*C*~B*~A + ~G*~F*E*~D*B + G*~F*~E*~D*C + ~F*~E*D*B*~A + ~G*E*~D*~C*A + G*~F*D*~C*~A + ~F*E*~D*~C*A + ~G*~F*E*~D*A + ~G*~F*D*C*~A + ~G*F*~D*B*~A + ~F*E*~D*~C*B + ~G*~F*D*C*~B + ~G*F*~C*B*~A + ~F*E*C*~B*~A + ~G*E*~D*~B*A + ~F*E*D*~B*~A + G*~F*E*~B*~A + ~G*F*~C*~B*A + ~F*E*D*C*~B + ~G*~F*E*B*A + ~G*D*~C*B*A + G*~F*~E*C*A + G*~F*D*~B*A + ~G*F*E*~C*A + ~F*E*~C*B*A + ~F*D*C*~B*A + G*~F*E*D*~A + G*~F*E*D*~B + ~G*F*E*~C*B + ~G*F*E*B*~A + G*~F*D*B*~A + ~G*F*D*~C*B + G*~F*~E*C*B + ~G*F*D*~C*A + ~F*E*D*C*~A + ~G*E*~C*B*A + ~F*D*C*B*~A + ~G*F*E*~B*A + ~G*F*D*B*A + ~G*F*E*D*A + ~G*E*D*B*A + ~G*F*E*D*B + ~G*~E*~C*~B + ~G*~F*~E*~C + ~G*~E*~C*~A + ~G*~E*D*~C + ~G*E*C*~B + ~G*~F*E*C + ~F*~D*B*A + G*~F*E*~C + ~G*E*C*~A + ~G*E*D*C
+
+g:
+~G*~F*~D*~C*~A + ~G*~F*~E*~C*~A + ~G*~D*~C*~B*~A + ~G*~E*~C*~B*~A + ~F*E*~D*~C*~A + ~G*~E*D*~C*~A + ~G*~F*E*~D*~A + ~G*E*~D*~B*~A + ~G*E*~D*~C*~A + F*~E*~D*~C*~B + ~G*~F*E*~D*~C + ~G*E*~D*~C*~B + ~G*F*~C*~B*~A + ~G*~F*~C*B*~A + ~G*~F*E*C*~A + ~G*~E*~D*B*A + ~G*~E*~D*C*B + ~G*D*~C*B*~A + F*~E*~D*~C*A + ~E*~D*~C*B*A + G*~F*~E*C*~A + ~G*E*C*~B*~A + G*~F*~E*~B*A + ~F*E*~C*B*~A + ~G*F*D*~C*~A + ~G*F*E*~C*~B + ~G*E*~C*B*~A + ~G*~F*E*B*~A + G*F*~E*~D*~C + G*~E*~D*~C*A + ~G*E*~C*~B*A + ~G*F*E*~C*~A + G*~E*~D*~C*B + G*~F*~E*C*~B + ~G*~F*E*~C*A + ~G*F*~E*~D*A + ~G*F*~E*~D*C + ~G*~F*E*~C*B + ~G*F*E*~B*~A + ~F*~E*C*~B*A + G*~F*E*~C*~A + G*~F*~E*~C*A + ~G*F*E*D*~A + ~G*E*D*B*~A + ~G*E*D*~C*B + ~G*F*~E*C*B + ~F*~E*D*C*A + ~G*~D*C*B*A + ~G*F*E*D*~C + ~G*E*D*~C*A + ~G*E*D*C*~A + G*~F*~E*D*A + G*~F*~E*D*C + ~G*F*~D*C*A + ~G*F*~E*B*A + G*~F*C*~B*A + G*~F*D*C*A + G*~F*E*C*A + ~G*F*C*B*A + ~G*~F*~D*B + ~F*~D*B*~A + ~G*F*~D*~B + ~F*~D*~C*B + ~F*~E*D*~B + ~G*~E*C*A + ~F*D*~B*A + ~F*D*C*~B + G*~F*D*~B + ~F*E*~D*B + ~G*F*D*B
+
+h:
+~G*~F*~E*~C*~B + ~G*~F*D*~C*~B + ~F*~E*~D*~B + G*~F*~D*~B + ~F*~D*C*~B + G*~F*~D*~C + ~G*F*~D*B + ~G*F*E*B + ~G*~E*~D + ~E*~D*~C + ~G*~D*C + ~G*E*D + G*~F*E + ~G*E*C + ~F*E*D + ~F*E*C
+
+i:
+~G*~F*~E*~C*~B + ~G*~F*D*~C*~B + ~F*E*D*~C*~B + ~G*~F*E*D*~B + G*~F*E*~C*~B + ~G*~F*E*C*~B + ~G*~F*E*D*~C + ~G*E*D*C*~B + ~G*F*E*D*C + ~F*~E*~D*~B + ~F*~E*~D*~C + ~G*~F*~E*~D + G*~F*~D*~C + G*~F*~D*~B + ~F*~D*C*~B + ~G*~F*~D*C + ~F*E*~D*C + G*~F*E*~D
+
+j:
+~G*~F*~D*~C + G*~F*~E*~D*~B + ~G*~F*~E + ~G*~E*~D + ~G*~F*D*C*B + G*~F*C*B + G*~F*E + ~G*F*E + G*~F*D + ~G*F*D + G*~E*~D*~C
+//EXPERIMENTAL
+
+k:
+G*~F*~D*~B + ~G*F*~D*~A + ~G*E*~D*C*~A + G*~F*~D*~C + ~G*E*~D*C*~B + ~G*F*~D*~B + ~G*F*~D*~C + G*~E*~D*~C + ~G*F*~E + ~G*~F*E*C + G*~F*E + ~G*F*E*C*B*A + ~G*E*D
+//EXPERIMENTAL
+
+l:
+~G*~F*~E*~C*~B + ~G*~E*D*~C*~B + ~F*~E*~D*~C + ~G*~F*~E*~D + ~F*~E*~D*~B + G*~E*~D*~C + G*~F*~D*~C + G*~F*~D*~B + ~G*F*D + ~G*F*E + G*~F*E
+
+m:
+~G*F*~D*~C*~B + G*~F*~E*D*~C*~B + ~G*~F*~C*~A + G*~F*~E*D*~C*~A + ~G*~F*~C*~B + G*~F*~E*~D*C*B + G*F*~E*~D*~C + ~G*~F*~D + ~G*~F*E*D*C + ~G*~F*E*D*B*A + G*~F*E + G*~F*D*B*A + G*~F*D*C + ~G*~E
+//EXPERIMENTAL
+
+n:
+~G*~E*~D*~B*~A + G*~F*~E*~C*~A + ~G*~F*D*~C*~B + ~G*~E*~D*~C + G*F*~E*~D*~C + ~G*~F*~D*C + ~G*F*~D*C*B + ~G*F*~D*C*A + G*~F*E + G*~F*D*C + G*~F*D*B*A + ~G*F*E*B + ~F*~E*~C*~B + ~F*~E*~D + ~G*E*D + ~G*E*C
+//EXPERIMENTAL

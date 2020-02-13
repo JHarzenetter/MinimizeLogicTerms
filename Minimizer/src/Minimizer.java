@@ -12,7 +12,7 @@ public class Minimizer {
 
     public void initialize() {
         try {
-            File terms = new File("Minimizer/resources/terms.txt");
+            File terms = new File("Minimizer/resources/terms_a.txt");
 
             BufferedReader reader = new BufferedReader(new FileReader(terms));
 
