@@ -32,102 +32,638 @@ public class Minimizer {
 
     public List<Term> create_Prime_Terms() {
 
+        compare_combine_Terms_rek(this.termTable);
+
+        List<Term> shortPrimes = new ArrayList<>();
+
+        primeTable.forEach(Term::shortenTerm);
+
         //result should be only the minimal form
-        return null;
+        return this.primeTable;
     }
 
     //helper methods below
-    public List<Term> compare_combine_Terms() {
-        //TODO: compare terms, on matching 0 and 1 // make method recursive and make functional for recursivity
-        Map<Term, Long> negationMapping = countNegationsPerTerm(this.termTable);
-        List<Term> sortedTermList = sortTerms(negationMapping);
+    public List<Term> compare_combine_Terms_rek(List<Term> termTable) {
 
-        List<Term> combinedTerms = new ArrayList<>();
+        List<Term> result = new ArrayList<>();
+        Map<Term, Long> negationMapping = countNegationsPerTerm(termTable);
+        List<Term> sorted = sortTerms(negationMapping);
 
-        for (int i = 0; i < sortedTermList.size(); i++) {
-            Term t1 = sortedTermList.get(i);
-            for (int k = 0; k < sortedTermList.size(); k++) {
+        for (int i = 0; i < sorted.size(); i++) {
+            Term t1 = sorted.get(i);
+            boolean t1_got_combined = false;
+
+            for (int k = i; k < sorted.size(); k++) {
+                boolean t2_got_combined = false;
+                //only check two different Terms
                 if (k != i) {
-                    Term t2 = sortedTermList.get(k);
-
+                    Term t2 = sorted.get(k);
+                    //only compare if the negation-classes are neighbors
                     if (negationMapping.get(t1) - negationMapping.get(t2) == 1) {
-                        //System.out.println("combining Terms: " + t1.getCompleteTerm() + " and " + t2.getCompleteTerm());
-                        if(!t1.diffEq1(t2)){
-                            continue;
-                        }
+                        //only compare if the difference between the terms is one variable
+                        if (t1.getCompleteTerm().contains("DoCa")) {
+                            //compare with DontCare
+                            if (t1.diffEq1(t2)) {
+                                String v_A = null, v_B = null, v_C = null, v_D = null, v_E = null, v_F = null, v_G = null;
+                                t1_got_combined = true;
+                                t2_got_combined = true;
+                                //var_A
+                                if (t1.getVariable_A() != null && t2.getVariable_A() != null) {
+                                    if (t1.getVariable_A().equals("DoCa") && t1.getVariable_A().equals(t2.getVariable_A())) {
+                                        //var_A
+                                        v_A = "DoCa";
 
-                        String v_A = null;
-                        String v_B = null;
-                        String v_C = null;
-                        String v_D = null;
-                        String v_E = null;
-                        String v_F = null;
-                        String v_G = null;
+                                        //var_B
+                                        if (t1.getVariable_B() != null && t2.getVariable_B() != null) {
+                                            if (!t1.getVariable_B().equals(t2.getVariable_B())) {
+                                                if (t1.getVariable_B().contains("~")) {
+                                                    v_B = "DoCa";
+                                                }
+                                            } else {
+                                                v_B = t1.getVariable_B();
+                                            }
+                                        }
 
-                        if (t1.getVariable_A() != null && t2.getVariable_A() != null) {
-                            if (!(t1.getVariable_A().equals(t2.getVariable_A()))) {
-                                v_A = "DoCa";
-                            } else {
-                                v_A = t1.getVariable_A();
+                                        //var_C
+                                        if (t1.getVariable_C() != null && t2.getVariable_C() != null) {
+                                            if (!t1.getVariable_C().equals(t2.getVariable_C())) {
+                                                if (t1.getVariable_C().contains("~")) {
+                                                    v_C = "DoCa";
+                                                }
+                                            } else {
+                                                v_C = t1.getVariable_C();
+                                            }
+                                        }
+                                        //var_D
+                                        if (t1.getVariable_D() != null && t2.getVariable_D() != null) {
+                                            if (!t1.getVariable_D().equals(t2.getVariable_D())) {
+                                                if (t1.getVariable_D().contains("~")) {
+                                                    v_D = "DoCa";
+                                                }
+                                            } else {
+                                                v_D = t1.getVariable_D();
+                                            }
+                                        }
+                                        //var_E
+                                        if (t1.getVariable_E() != null && t2.getVariable_E() != null) {
+                                            if (!t1.getVariable_E().equals(t2.getVariable_E())) {
+                                                if (t1.getVariable_E().contains("~")) {
+                                                    v_E = "DoCa";
+                                                }
+                                            } else {
+                                                v_E = t1.getVariable_E();
+                                            }
+                                        }
+                                        //var_F
+                                        if (t1.getVariable_F() != null && t2.getVariable_F() != null) {
+                                            if (!t1.getVariable_F().equals(t2.getVariable_F())) {
+                                                if (t1.getVariable_F().contains("~")) {
+                                                    v_F = "DoCa";
+                                                }
+                                            } else {
+                                                v_F = t1.getVariable_F();
+                                            }
+                                        }
+                                        //var_G
+                                        if (t1.getVariable_G() != null && t2.getVariable_G() != null) {
+                                            if (!t1.getVariable_G().equals(t2.getVariable_G())) {
+                                                if (t1.getVariable_G().contains("~")) {
+                                                    v_G = "DoCa";
+                                                }
+                                            } else {
+                                                v_G = t1.getVariable_G();
+                                            }
+                                        }
+                                        result.add(new Term(v_A, v_B, v_C, v_D, v_E, v_F, v_G));
+                                    }
+                                }
+                                //var_B
+                                if (t1.getVariable_B() != null && t2.getVariable_B() != null) {
+                                    if (t1.getVariable_B().equals("DoCa") && t1.getVariable_B().equals(t2.getVariable_B())) {
+                                        //var_B
+                                        v_B = "DoCa";
+
+                                        //var_A
+                                        if (t1.getVariable_A() != null && t2.getVariable_A() != null) {
+                                            if (!t1.getVariable_A().equals(t2.getVariable_A())) {
+                                                if (t1.getVariable_A().contains("~")) {
+                                                    v_A = "DoCa";
+                                                }
+                                            } else {
+                                                v_A = t1.getVariable_A();
+                                            }
+                                        }
+
+                                        //var_C
+                                        if (t1.getVariable_C() != null && t2.getVariable_C() != null) {
+                                            if (!t1.getVariable_C().equals(t2.getVariable_C())) {
+                                                if (t1.getVariable_C().contains("~")) {
+                                                    v_C = "DoCa";
+                                                }
+                                            } else {
+                                                v_C = t1.getVariable_C();
+                                            }
+                                        }
+                                        //var_D
+                                        if (t1.getVariable_D() != null && t2.getVariable_D() != null) {
+                                            if (!t1.getVariable_D().equals(t2.getVariable_D())) {
+                                                if (t1.getVariable_D().contains("~")) {
+                                                    v_D = "DoCa";
+                                                }
+                                            } else {
+                                                v_D = t1.getVariable_D();
+                                            }
+                                        }
+                                        //var_E
+                                        if (t1.getVariable_E() != null && t2.getVariable_E() != null) {
+                                            if (!t1.getVariable_E().equals(t2.getVariable_E())) {
+                                                if (t1.getVariable_E().contains("~")) {
+                                                    v_E = "DoCa";
+                                                }
+                                            } else {
+                                                v_E = t1.getVariable_E();
+                                            }
+                                        }
+                                        //var_F
+                                        if (t1.getVariable_F() != null && t2.getVariable_F() != null) {
+                                            if (!t1.getVariable_F().equals(t2.getVariable_F())) {
+                                                if (t1.getVariable_F().contains("~")) {
+                                                    v_F = "DoCa";
+                                                }
+                                            } else {
+                                                v_F = t1.getVariable_F();
+                                            }
+                                        }
+                                        //var_G
+                                        if (t1.getVariable_G() != null && t2.getVariable_G() != null) {
+                                            if (!t1.getVariable_G().equals(t2.getVariable_G())) {
+                                                if (t1.getVariable_G().contains("~")) {
+                                                    v_G = "DoCa";
+                                                }
+                                            } else {
+                                                v_G = t1.getVariable_G();
+                                            }
+                                        }
+                                        result.add(new Term(v_A, v_B, v_C, v_D, v_E, v_F, v_G));
+                                    }
+                                }
+                                //var_C
+                                if (t1.getVariable_C() != null && t2.getVariable_C() != null) {
+                                    if (t1.getVariable_C().equals("DoCa") && t1.getVariable_C().equals(t2.getVariable_C())) {
+                                        //var_C
+                                        v_C = "DoCa";
+
+                                        //var_B
+                                        if (t1.getVariable_B() != null && t2.getVariable_B() != null) {
+                                            if (!t1.getVariable_B().equals(t2.getVariable_B())) {
+                                                if (t1.getVariable_B().contains("~")) {
+                                                    v_B = "DoCa";
+                                                }
+                                            } else {
+                                                v_B = t1.getVariable_B();
+                                            }
+                                        }
+
+                                        //var_A
+                                        if (t1.getVariable_A() != null && t2.getVariable_A() != null) {
+                                            if (!t1.getVariable_A().equals(t2.getVariable_A())) {
+                                                if (t1.getVariable_A().contains("~")) {
+                                                    v_A = "DoCa";
+                                                }
+                                            } else {
+                                                v_A = t1.getVariable_A();
+                                            }
+                                        }
+                                        //var_D
+                                        if (t1.getVariable_D() != null && t2.getVariable_D() != null) {
+                                            if (!t1.getVariable_D().equals(t2.getVariable_D())) {
+                                                if (t1.getVariable_D().contains("~")) {
+                                                    v_D = "DoCa";
+                                                }
+                                            } else {
+                                                v_D = t1.getVariable_D();
+                                            }
+                                        }
+                                        //var_E
+                                        if (t1.getVariable_E() != null && t2.getVariable_E() != null) {
+                                            if (!t1.getVariable_E().equals(t2.getVariable_E())) {
+                                                if (t1.getVariable_E().contains("~")) {
+                                                    v_E = "DoCa";
+                                                }
+                                            } else {
+                                                v_E = t1.getVariable_E();
+                                            }
+                                        }
+                                        //var_F
+                                        if (t1.getVariable_F() != null && t2.getVariable_F() != null) {
+                                            if (!t1.getVariable_F().equals(t2.getVariable_F())) {
+                                                if (t1.getVariable_F().contains("~")) {
+                                                    v_F = "DoCa";
+                                                }
+                                            } else {
+                                                v_F = t1.getVariable_F();
+                                            }
+                                        }
+                                        //var_G
+                                        if (t1.getVariable_G() != null && t2.getVariable_G() != null) {
+                                            if (!t1.getVariable_G().equals(t2.getVariable_G())) {
+                                                if (t1.getVariable_G().contains("~")) {
+                                                    v_G = "DoCa";
+                                                }
+                                            } else {
+                                                v_G = t1.getVariable_G();
+                                            }
+                                        }
+                                        result.add(new Term(v_A, v_B, v_C, v_D, v_E, v_F, v_G));
+                                    }
+                                }
+                                //var_D
+                                if (t1.getVariable_D() != null && t2.getVariable_D() != null) {
+                                    if (t1.getVariable_A().equals("DoCa") && t1.getVariable_A().equals(t2.getVariable_D())) {
+                                        //var_D
+                                        v_D = "DoCa";
+
+                                        //var_B
+                                        if (t1.getVariable_B() != null && t2.getVariable_B() != null) {
+                                            if (!t1.getVariable_B().equals(t2.getVariable_B())) {
+                                                if (t1.getVariable_B().contains("~")) {
+                                                    v_B = "DoCa";
+                                                }
+                                            } else {
+                                                v_B = t1.getVariable_B();
+                                            }
+                                        }
+
+                                        //var_C
+                                        if (t1.getVariable_C() != null && t2.getVariable_C() != null) {
+                                            if (!t1.getVariable_C().equals(t2.getVariable_C())) {
+                                                if (t1.getVariable_C().contains("~")) {
+                                                    v_C = "DoCa";
+                                                }
+                                            } else {
+                                                v_C = t1.getVariable_C();
+                                            }
+                                        }
+                                        //var_A
+                                        if (t1.getVariable_A() != null && t2.getVariable_A() != null) {
+                                            if (!t1.getVariable_A().equals(t2.getVariable_A())) {
+                                                if (t1.getVariable_A().contains("~")) {
+                                                    v_A = "DoCa";
+                                                }
+                                            } else {
+                                                v_A = t1.getVariable_A();
+                                            }
+                                        }
+                                        //var_E
+                                        if (t1.getVariable_E() != null && t2.getVariable_E() != null) {
+                                            if (!t1.getVariable_E().equals(t2.getVariable_E())) {
+                                                if (t1.getVariable_E().contains("~")) {
+                                                    v_E = "DoCa";
+                                                }
+                                            } else {
+                                                v_E = t1.getVariable_E();
+                                            }
+                                        }
+                                        //var_F
+                                        if (t1.getVariable_F() != null && t2.getVariable_F() != null) {
+                                            if (!t1.getVariable_F().equals(t2.getVariable_F())) {
+                                                if (t1.getVariable_F().contains("~")) {
+                                                    v_F = "DoCa";
+                                                }
+                                            } else {
+                                                v_F = t1.getVariable_F();
+                                            }
+                                        }
+                                        //var_G
+                                        if (t1.getVariable_G() != null && t2.getVariable_G() != null) {
+                                            if (!t1.getVariable_G().equals(t2.getVariable_G())) {
+                                                if (t1.getVariable_G().contains("~")) {
+                                                    v_G = "DoCa";
+                                                }
+                                            } else {
+                                                v_G = t1.getVariable_G();
+                                            }
+                                        }
+                                        result.add(new Term(v_A, v_B, v_C, v_D, v_E, v_F, v_G));
+                                    }
+                                }
+                                //var_E
+                                if (t1.getVariable_E() != null && t2.getVariable_E() != null) {
+                                    if (t1.getVariable_E().equals("DoCa") && t1.getVariable_E().equals(t2.getVariable_E())) {
+                                        //var_E
+                                        v_E = "DoCa";
+
+                                        //var_B
+                                        if (t1.getVariable_B() != null && t2.getVariable_B() != null) {
+                                            if (!t1.getVariable_B().equals(t2.getVariable_B())) {
+                                                if (t1.getVariable_B().contains("~")) {
+                                                    v_B = "DoCa";
+                                                }
+                                            } else {
+                                                v_B = t1.getVariable_B();
+                                            }
+                                        }
+
+                                        //var_C
+                                        if (t1.getVariable_C() != null && t2.getVariable_C() != null) {
+                                            if (!t1.getVariable_C().equals(t2.getVariable_C())) {
+                                                if (t1.getVariable_C().contains("~")) {
+                                                    v_C = "DoCa";
+                                                }
+                                            } else {
+                                                v_C = t1.getVariable_C();
+                                            }
+                                        }
+                                        //var_D
+                                        if (t1.getVariable_D() != null && t2.getVariable_D() != null) {
+                                            if (!t1.getVariable_D().equals(t2.getVariable_D())) {
+                                                if (t1.getVariable_D().contains("~")) {
+                                                    v_D = "DoCa";
+                                                }
+                                            } else {
+                                                v_D = t1.getVariable_D();
+                                            }
+                                        }
+                                        //var_A
+                                        if (t1.getVariable_A() != null && t2.getVariable_A() != null) {
+                                            if (!t1.getVariable_A().equals(t2.getVariable_A())) {
+                                                if (t1.getVariable_A().contains("~")) {
+                                                    v_A = "DoCa";
+                                                }
+                                            } else {
+                                                v_A = t1.getVariable_A();
+                                            }
+                                        }
+                                        //var_F
+                                        if (t1.getVariable_F() != null && t2.getVariable_F() != null) {
+                                            if (!t1.getVariable_F().equals(t2.getVariable_F())) {
+                                                if (t1.getVariable_F().contains("~")) {
+                                                    v_F = "DoCa";
+                                                }
+                                            } else {
+                                                v_F = t1.getVariable_F();
+                                            }
+                                        }
+                                        //var_G
+                                        if (t1.getVariable_G() != null && t2.getVariable_G() != null) {
+                                            if (!t1.getVariable_G().equals(t2.getVariable_G())) {
+                                                if (t1.getVariable_G().contains("~")) {
+                                                    v_G = "DoCa";
+                                                }
+                                            } else {
+                                                v_G = t1.getVariable_G();
+                                            }
+                                        }
+                                        result.add(new Term(v_A, v_B, v_C, v_D, v_E, v_F, v_G));
+                                    }
+                                }
+                                //var_F
+                                if (t1.getVariable_F() != null && t2.getVariable_F() != null) {
+                                    if (t1.getVariable_F().equals("DoCa") && t1.getVariable_F().equals(t2.getVariable_F())) {
+                                        //var_F
+                                        v_F = "DoCa";
+
+                                        //var_B
+                                        if (t1.getVariable_B() != null && t2.getVariable_B() != null) {
+                                            if (!t1.getVariable_B().equals(t2.getVariable_B())) {
+                                                if (t1.getVariable_B().contains("~")) {
+                                                    v_B = "DoCa";
+                                                }
+                                            } else {
+                                                v_B = t1.getVariable_B();
+                                            }
+                                        }
+
+                                        //var_C
+                                        if (t1.getVariable_C() != null && t2.getVariable_C() != null) {
+                                            if (!t1.getVariable_C().equals(t2.getVariable_C())) {
+                                                if (t1.getVariable_C().contains("~")) {
+                                                    v_C = "DoCa";
+                                                }
+                                            } else {
+                                                v_C = t1.getVariable_C();
+                                            }
+                                        }
+                                        //var_D
+                                        if (t1.getVariable_D() != null && t2.getVariable_D() != null) {
+                                            if (!t1.getVariable_D().equals(t2.getVariable_D())) {
+                                                if (t1.getVariable_D().contains("~")) {
+                                                    v_D = "DoCa";
+                                                }
+                                            } else {
+                                                v_D = t1.getVariable_D();
+                                            }
+                                        }
+                                        //var_E
+                                        if (t1.getVariable_E() != null && t2.getVariable_E() != null) {
+                                            if (!t1.getVariable_E().equals(t2.getVariable_E())) {
+                                                if (t1.getVariable_E().contains("~")) {
+                                                    v_E = "DoCa";
+                                                }
+                                            } else {
+                                                v_E = t1.getVariable_E();
+                                            }
+                                        }
+                                        //var_A
+                                        if (t1.getVariable_A() != null && t2.getVariable_A() != null) {
+                                            if (!t1.getVariable_A().equals(t2.getVariable_A())) {
+                                                if (t1.getVariable_A().contains("~")) {
+                                                    v_A = "DoCa";
+                                                }
+                                            } else {
+                                                v_A = t1.getVariable_A();
+                                            }
+                                        }
+                                        //var_G
+                                        if (t1.getVariable_G() != null && t2.getVariable_G() != null) {
+                                            if (!t1.getVariable_G().equals(t2.getVariable_G())) {
+                                                if (t1.getVariable_G().contains("~")) {
+                                                    v_G = "DoCa";
+                                                }
+                                            } else {
+                                                v_G = t1.getVariable_G();
+                                            }
+                                        }
+                                        result.add(new Term(v_A, v_B, v_C, v_D, v_E, v_F, v_G));
+                                    }
+                                }
+                                //var_G
+                                if (t1.getVariable_G() != null && t2.getVariable_G() != null) {
+                                    if (t1.getVariable_G().equals("DoCa") && t1.getVariable_G().equals(t2.getVariable_G())) {
+                                        //var_G
+                                        v_G = "DoCa";
+
+                                        //var_B
+                                        if (t1.getVariable_B() != null && t2.getVariable_B() != null) {
+                                            if (!t1.getVariable_B().equals(t2.getVariable_B())) {
+                                                if (t1.getVariable_B().contains("~")) {
+                                                    v_B = "DoCa";
+                                                }
+                                            } else {
+                                                v_B = t1.getVariable_B();
+                                            }
+                                        }
+
+                                        //var_C
+                                        if (t1.getVariable_C() != null && t2.getVariable_C() != null) {
+                                            if (!t1.getVariable_C().equals(t2.getVariable_C())) {
+                                                if (t1.getVariable_C().contains("~")) {
+                                                    v_C = "DoCa";
+                                                }
+                                            } else {
+                                                v_C = t1.getVariable_C();
+                                            }
+                                        }
+                                        //var_D
+                                        if (t1.getVariable_D() != null && t2.getVariable_D() != null) {
+                                            if (!t1.getVariable_D().equals(t2.getVariable_D())) {
+                                                if (t1.getVariable_D().contains("~")) {
+                                                    v_D = "DoCa";
+                                                }
+                                            } else {
+                                                v_D = t1.getVariable_D();
+                                            }
+                                        }
+                                        //var_E
+                                        if (t1.getVariable_E() != null && t2.getVariable_E() != null) {
+                                            if (!t1.getVariable_E().equals(t2.getVariable_E())) {
+                                                if (t1.getVariable_E().contains("~")) {
+                                                    v_E = "DoCa";
+                                                }
+                                            } else {
+                                                v_E = t1.getVariable_E();
+                                            }
+                                        }
+                                        //var_F
+                                        if (t1.getVariable_F() != null && t2.getVariable_F() != null) {
+                                            if (!t1.getVariable_F().equals(t2.getVariable_F())) {
+                                                if (t1.getVariable_F().contains("~")) {
+                                                    v_F = "DoCa";
+                                                }
+                                            } else {
+                                                v_F = t1.getVariable_F();
+                                            }
+                                        }
+                                        //var_A
+                                        if (t1.getVariable_A() != null && t2.getVariable_A() != null) {
+                                            if (!t1.getVariable_A().equals(t2.getVariable_A())) {
+                                                if (t1.getVariable_A().contains("~")) {
+                                                    v_A = "DoCa";
+                                                }
+                                            } else {
+                                                v_A = t1.getVariable_A();
+                                            }
+                                        }
+                                        result.add(new Term(v_A, v_B, v_C, v_D, v_E, v_F, v_G));
+                                    }
+                                }
+                            }
+                        } else {
+                            //without a DontCare
+                            if (t1.diffEq1(t2)) {
+                                String v_A = null, v_B = null, v_C = null, v_D = null, v_E = null, v_F = null, v_G = null;
+                                t1_got_combined = true;
+                                t2_got_combined = true;
+                                //var_A
+                                if (t1.getVariable_A() != null && t2.getVariable_A() != null) {
+                                    if (!t1.getVariable_A().equals(t2.getVariable_A())) {
+                                        if (t1.getVariable_A().contains("~")) {
+                                            v_A = "DoCa";
+                                        }
+                                    } else {
+                                        v_A = t1.getVariable_A();
+                                    }
+                                }
+                                //var_B
+                                if (t1.getVariable_B() != null && t2.getVariable_B() != null) {
+                                    if (!t1.getVariable_B().equals(t2.getVariable_B())) {
+                                        if (t1.getVariable_B().contains("~")) {
+                                            v_B = "DoCa";
+                                        }
+                                    } else {
+                                        v_B = t1.getVariable_B();
+                                    }
+                                }
+                                //var_C
+                                if (t1.getVariable_C() != null && t2.getVariable_C() != null) {
+                                    if (!t1.getVariable_C().equals(t2.getVariable_C())) {
+                                        if (t1.getVariable_C().contains("~")) {
+                                            v_C = "DoCa";
+                                        }
+                                    } else {
+                                        v_C = t1.getVariable_C();
+                                    }
+                                }
+                                //var_D
+                                if (t1.getVariable_D() != null && t2.getVariable_D() != null) {
+                                    if (!t1.getVariable_D().equals(t2.getVariable_D())) {
+                                        if (t1.getVariable_D().contains("~")) {
+                                            v_D = "DoCa";
+                                        }
+                                    } else {
+                                        v_D = t1.getVariable_D();
+                                    }
+                                }
+                                //var_E
+                                if (t1.getVariable_E() != null && t2.getVariable_E() != null) {
+                                    if (!t1.getVariable_E().equals(t2.getVariable_E())) {
+                                        if (t1.getVariable_E().contains("~")) {
+                                            v_E = "DoCa";
+                                        }
+                                    } else {
+                                        v_E = t1.getVariable_E();
+                                    }
+                                }
+                                //var_F
+                                if (t1.getVariable_F() != null && t2.getVariable_F() != null) {
+                                    if (!t1.getVariable_F().equals(t2.getVariable_F())) {
+                                        if (t1.getVariable_F().contains("~")) {
+                                            v_F = "DoCa";
+                                        }
+                                    } else {
+                                        v_F = t1.getVariable_F();
+                                    }
+                                }
+                                //var_G
+                                if (t1.getVariable_G() != null && t2.getVariable_G() != null) {
+                                    if (!t1.getVariable_G().equals(t2.getVariable_G())) {
+                                        if (t1.getVariable_G().contains("~")) {
+                                            v_G = "DoCa";
+                                        }
+                                    } else {
+                                        v_G = t1.getVariable_G();
+                                    }
+                                }
+
+                                result.add(new Term(v_A, v_B, v_C, v_D, v_E, v_F, v_G));
                             }
                         }
-                        if (t1.getVariable_B() != null && t2.getVariable_B() != null) {
-                            if (!(t1.getVariable_B().equals(t2.getVariable_B()))) {
-                                v_B = "DoCa";
-                            } else {
-                                v_B = t1.getVariable_B();
-                            }
-                        }
-                        if (t1.getVariable_C() != null && t2.getVariable_C() != null) {
-                            if (!(t1.getVariable_C().equals(t2.getVariable_C()))) {
-                                v_C = "DoCa";
-                            } else {
-                                v_C = t1.getVariable_C();
-                            }
-                        }
-                        if (t1.getVariable_D() != null && t2.getVariable_D() != null) {
-                            if (!(t1.getVariable_D().equals(t2.getVariable_D()))) {
-                                v_D = "DoCa";
-                            } else {
-                                v_D = t1.getVariable_D();
-                            }
-                        }
-                        if (t1.getVariable_E() != null && t2.getVariable_E() != null) {
-                            if (!(t1.getVariable_E().equals(t2.getVariable_E()))) {
-                                v_E = "DoCa";
-                            } else {
-                                v_E = t1.getVariable_E();
-                            }
-                        }
-                        if (t1.getVariable_F() != null && t2.getVariable_F() != null) {
-                            if (!(t1.getVariable_F().equals(t2.getVariable_F()))) {
-                                v_F = "DoCa";
-                            } else {
-                                v_F = t1.getVariable_F();
-                            }
-                        }
-                        if (t1.getVariable_G() != null && t2.getVariable_G() != null) {
-                            if (!(t1.getVariable_G().equals(t2.getVariable_G()))) {
-                                v_G = "DoCa";
-                            } else {
-                                v_G = t1.getVariable_G();
-                            }
-                        }
-                        Term adding = new Term(v_A, v_B, v_C, v_D, v_E, v_F, v_G);
-                        combinedTerms.add(adding);
                     }
                 }
+
+                if (t2_got_combined) {
+                    sorted.get(k).setMarked(true);
+                }
             }
-            t1.setMarked(true);
+
+            if (t1_got_combined) {
+                sorted.get(i).setMarked(true);
+            }
         }
 
-        for (Term t : sortedTermList){
-            if (!t.isMarked()) {
+        for (Term t : sorted) {
+            if (!t.isMarked() && !t.existsInList(primeTable)) {
                 primeTable.add(t);
             }
         }
 
-        return combinedTerms;
+        // end-statement of recursion:  if no combinings are done in one run, then return the given List
+        //                              and add them to primeTable
+        if (result.isEmpty()) {
+            return termTable;
+        } else {
+            return compare_combine_Terms_rek(result);
+        }
     }
 
     public List<Term> sortTerms(Map<Term, Long> mappingNumber_of_Negations) {
@@ -138,7 +674,6 @@ public class Minimizer {
 
         for (Map.Entry<Term, Long> entry : sortingList) {
             sortedList.add(entry.getKey());
-            //System.out.println(entry.getKey().getCompleteTerm());
         }
 
         return sortedList;
@@ -162,6 +697,7 @@ public class Minimizer {
         }
     }
 
+    //getter
     public String getAll_terms_combined() {
         return all_terms_combined;
     }
