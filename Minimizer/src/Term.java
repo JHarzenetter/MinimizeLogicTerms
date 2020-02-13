@@ -2,7 +2,7 @@ import java.util.List;
 
 public class Term {
 
-    private String completeTerm = "";
+    private String completeTerm;
     private String variable_A = "";
     private String variable_B = "";
     private String variable_C = "";
@@ -200,14 +200,17 @@ public class Term {
 
     @Override
     public boolean equals(Object obj) {
-        Term term = (Term) obj;
-        return this.variable_A.equals(term.getVariable_A()) &&
-                this.variable_B.equals(term.getVariable_B()) &&
-                this.variable_C.equals(term.getVariable_C()) &&
-                this.variable_D.equals(term.getVariable_D()) &&
-                this.variable_E.equals(term.getVariable_E()) &&
-                this.variable_F.equals(term.getVariable_F()) &&
-                this.variable_G.equals(term.getVariable_G());
+        if(obj instanceof Term){
+            Term term = (Term) obj;
+            return this.variable_A.equals(term.getVariable_A()) &&
+                    this.variable_B.equals(term.getVariable_B()) &&
+                    this.variable_C.equals(term.getVariable_C()) &&
+                    this.variable_D.equals(term.getVariable_D()) &&
+                    this.variable_E.equals(term.getVariable_E()) &&
+                    this.variable_F.equals(term.getVariable_F()) &&
+                    this.variable_G.equals(term.getVariable_G());
+        }
+        return false;
     }
 
     public boolean existsInList(List<Term> list) {
