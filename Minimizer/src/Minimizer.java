@@ -30,16 +30,21 @@ public class Minimizer {
         }
     }
 
-    public List<Term> create_Prime_Terms() {
+    public String create_Prime_Terms() {
 
         compare_combine_Terms_rek(this.termTable);
 
-        List<Term> shortPrimes = new ArrayList<>();
-
         primeTable.forEach(Term::shortenTerm);
 
+        StringBuilder sb = new StringBuilder();
+        primeTable.forEach(x->{
+            sb.append(x.getCompleteTerm());
+            sb.append(" + ");
+        });
+        sb.deleteCharAt(sb.length()-2);
+
         //result should be only the minimal form
-        return this.primeTable;
+        return sb.toString();
     }
 
     //helper methods below
