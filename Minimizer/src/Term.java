@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Term {
 
     private String completeTerm = "";
@@ -8,7 +10,6 @@ public class Term {
     private String variable_E = "";
     private String variable_F = "";
     private String variable_G = "";
-    private boolean isPrime;
     private boolean isMarked;
 
     public Term(String variable_A, String variable_B, String variable_C, String variable_D, String variable_E, String variable_F, String variable_G) {
@@ -19,7 +20,6 @@ public class Term {
         this.variable_E = variable_E;
         this.variable_F = variable_F;
         this.variable_G = variable_G;
-        this.isPrime = false;
         this.isMarked = false;
 
         String[] variables = new String[]{variable_G, variable_F, variable_E, variable_D, variable_C, variable_B, variable_A};
@@ -62,112 +62,20 @@ public class Term {
             }
         }
 
-        this.isPrime = false;
         this.isMarked = false;
     }
 
-    // activate
-    public void activate_A(Term givenTerm) {
-        if (givenTerm.getVariable_A() != null) {
-            givenTerm.setVariable_A("A");
-        }
-        updateTerm();
-    }
-
-    public void activate_B(Term givenTerm) {
-        if (givenTerm.getVariable_B() != null) {
-            givenTerm.setVariable_B("B");
-        }
-        updateTerm();
-    }
-
-    public void activate_C(Term givenTerm) {
-        if (givenTerm.getVariable_C() != null) {
-            givenTerm.setVariable_C("C");
-        }
-        updateTerm();
-    }
-
-    public void activate_D(Term givenTerm) {
-        if (givenTerm.getVariable_D() != null) {
-            givenTerm.setVariable_D("D");
-        }
-        updateTerm();
-    }
-
-    public void activate_E(Term givenTerm) {
-        if (givenTerm.getVariable_E() != null) {
-            givenTerm.setVariable_E("E");
-        }
-        updateTerm();
-    }
-
-    public void activate_F(Term givenTerm) {
-        if (givenTerm.getVariable_F() != null) {
-            givenTerm.setVariable_F("F");
-        }
-        updateTerm();
-    }
-
-    public void activate_G(Term givenTerm) {
-        if (givenTerm.getVariable_G() != null) {
-            givenTerm.setVariable_G("G");
-        }
-        updateTerm();
-    }
-
-    //negate
-    public void negate_A(Term givenTerm) {
-        if (givenTerm.getVariable_A() != null) {
-            givenTerm.setVariable_A("~A");
-        }
-        updateTerm();
-    }
-
-    public void negate_B(Term givenTerm) {
-        if (givenTerm.getVariable_B() != null) {
-            givenTerm.setVariable_B("~B");
-        }
-        updateTerm();
-    }
-
-    public void negate_C(Term givenTerm) {
-        if (givenTerm.getVariable_C() != null) {
-            givenTerm.setVariable_C("~C");
-        }
-        updateTerm();
-    }
-
-    public void negate_D(Term givenTerm) {
-        if (givenTerm.getVariable_D() != null) {
-            givenTerm.setVariable_D("~D");
-        }
-        updateTerm();
-    }
-
-    public void negate_E(Term givenTerm) {
-        if (givenTerm.getVariable_E() != null) {
-            givenTerm.setVariable_E("~E");
-        }
-        updateTerm();
-    }
-
-    public void negate_F(Term givenTerm) {
-        if (givenTerm.getVariable_F() != null) {
-            givenTerm.setVariable_F("~F");
-        }
-        updateTerm();
-    }
-
-    public void negate_G(Term givenTerm) {
-        if (givenTerm.getVariable_G() != null) {
-            givenTerm.setVariable_G("~G");
-        }
-        updateTerm();
-    }
-
     private void updateTerm() {
-        completeTerm = variable_A + "*" + variable_B + "*" + variable_C + "*" + variable_D + "*" + variable_E + "*" + variable_F + "*" + variable_G;
+        String[] variables = new String[]{variable_G, variable_F, variable_E, variable_D, variable_C, variable_B, variable_A};
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String v : variables) {
+            if (!v.isEmpty()) {
+                stringBuilder.append(v);
+                stringBuilder.append("*");
+            }
+        }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        completeTerm = stringBuilder.toString().trim();
     }
 
     public String getVariable_A() {
@@ -230,14 +138,6 @@ public class Term {
         return completeTerm;
     }
 
-    public boolean isPrime() {
-        return isPrime;
-    }
-
-    public void setPrime(boolean prime) {
-        isPrime = prime;
-    }
-
     public boolean isMarked() {
         return isMarked;
     }
@@ -273,6 +173,31 @@ public class Term {
         return count == 1;
     }
 
+    public void shortenTerm() {
+        if (this.getVariable_A().equals("DoCa")) {
+            this.setVariable_A("");
+        }
+        if (this.getVariable_B().equals("DoCa")) {
+            this.setVariable_B("");
+        }
+        if (this.getVariable_C().equals("DoCa")) {
+            this.setVariable_C("");
+        }
+        if (this.getVariable_D().equals("DoCa")) {
+            this.setVariable_D("");
+        }
+        if (this.getVariable_E().equals("DoCa")) {
+            this.setVariable_E("");
+        }
+        if (this.getVariable_F().equals("DoCa")) {
+            this.setVariable_F("");
+        }
+        if (this.getVariable_G().equals("DoCa")) {
+            this.setVariable_G("");
+        }
+        updateTerm();
+    }
+
     @Override
     public boolean equals(Object obj) {
         Term term = (Term) obj;
@@ -283,5 +208,14 @@ public class Term {
                 this.variable_E.equals(term.getVariable_E()) &&
                 this.variable_F.equals(term.getVariable_F()) &&
                 this.variable_G.equals(term.getVariable_G());
+    }
+
+    public boolean existsInList(List<Term> list) {
+        for (Term t : list) {
+            if (t.equals(this)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
