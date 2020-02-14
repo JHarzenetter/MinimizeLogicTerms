@@ -1,8 +1,5 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Minimizer {
 
@@ -12,7 +9,7 @@ public class Minimizer {
 
     public void initialize() {
         try {
-            File terms = new File("Minimizer/resources/terms_a.txt");
+            File terms = new File("Minimizer/resources/terms_full_c.txt");
 
             BufferedReader reader = new BufferedReader(new FileReader(terms));
 
