@@ -1,9 +1,11 @@
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Minimizer {
 
     private String all_terms_combined;
+    private int numberofRek = 0;
     private List<Term> termTable = new ArrayList<>();
     private List<Term> primeTable = new ArrayList<>();
 
@@ -29,6 +31,7 @@ public class Minimizer {
 
     public String create_Prime_Terms() {
 
+        //clear folder
         File folder = new File("Minimizer/term_objects/");
         File[] files = folder.listFiles();
         if (files != null) {
@@ -59,6 +62,9 @@ public class Minimizer {
         Map<String, Long> negationMapping;
         List<Term> sorted = sortTerms(countNegationsPerTerm(termTable));
 
+        System.out.println("Rekursion number: " + this.numberofRek);
+        System.out.println("Size of inputList: "+termTable.size());
+
         createTermFiles(termTable);
         System.gc();
 
@@ -71,8 +77,8 @@ public class Minimizer {
                 boolean t2_got_combined = false;
                 //only check two different Terms
                 if (k != i) {
-                    //Term t2 = sorted.get(k);
-                    Term t2 = loadTerm(sorted.get(k).getID());
+                    Term t2 = sorted.get(k);
+                    //Term t2 = loadTerm(sorted.get(k).getID());
                     negationMapping = countNegationsPerTermInString(termTable);
                     //only compare if the negation-classes are neighbors
                     if (negationMapping.get(t1.getID()) - negationMapping.get(t2.getID()) == 1) {
@@ -678,6 +684,9 @@ public class Minimizer {
                 primeTable.add(t);
             }
         }
+
+        numberofRek++;
+        System.out.println(LocalDateTime.now());
 
         // end-statement of recursion:  if no combinings are done in one run, then return the given List
         //                              and add them to primeTable
