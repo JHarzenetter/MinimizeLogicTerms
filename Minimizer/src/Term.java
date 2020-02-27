@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.List;
 
-public class Term {
+public class Term implements Serializable {
 
     private String completeTerm;
     private String variable_A = "";
@@ -11,6 +12,7 @@ public class Term {
     private String variable_F = "";
     private String variable_G = "";
     private boolean isMarked;
+    private String id="";
 
     public Term(String variable_A, String variable_B, String variable_C, String variable_D, String variable_E, String variable_F, String variable_G) {
         this.variable_A = variable_A;
@@ -32,6 +34,8 @@ public class Term {
         }
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         completeTerm = stringBuilder.toString().trim();
+
+        this.id = this.toString();
     }
 
     public Term(String completeTerm) {
@@ -63,6 +67,7 @@ public class Term {
         }
 
         this.isMarked = false;
+        this.id = this.toString();
     }
 
     private void updateTerm() {
@@ -220,5 +225,9 @@ public class Term {
             }
         }
         return false;
+    }
+
+    public String getID() {
+        return this.id;
     }
 }

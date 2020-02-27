@@ -9,6 +9,6 @@ public class Runner {
         System.out.println("Shortend: ");
         long time = System.nanoTime();
         System.out.println(minimizer.create_Prime_Terms());
-        System.out.println("Time in ms: " + ((System.nanoTime()-time)/1000000));
+        System.out.println("Time in ms: " + ((System.nanoTime()-time)/1000000000));
     }
 }

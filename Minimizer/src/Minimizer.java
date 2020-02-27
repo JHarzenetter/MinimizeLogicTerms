@@ -29,16 +29,24 @@ public class Minimizer {
 
     public String create_Prime_Terms() {
 
+        File folder = new File("Minimizer/term_objects/");
+        File[] files = folder.listFiles();
+        if (files != null) {
+            for (File f : files) {
+                f.delete();
+            }
+        }
+
         compare_combine_Terms_rek(this.termTable);
 
         primeTable.forEach(Term::shortenTerm);
 
         StringBuilder sb = new StringBuilder();
-        primeTable.forEach(x->{
+        primeTable.forEach(x -> {
             sb.append(x.getCompleteTerm());
             sb.append(" + ");
         });
-        sb.deleteCharAt(sb.length()-2);
+        sb.deleteCharAt(sb.length() - 2);
 
         //result should be only the minimal form
         return sb.toString();
@@ -48,20 +56,26 @@ public class Minimizer {
     public List<Term> compare_combine_Terms_rek(List<Term> termTable) {
 
         List<Term> result = new ArrayList<>();
-        Map<Term, Long> negationMapping = countNegationsPerTerm(termTable);
-        List<Term> sorted = sortTerms(negationMapping);
+        Map<String, Long> negationMapping;
+        List<Term> sorted = sortTerms(countNegationsPerTerm(termTable));
+
+        createTermFiles(termTable);
+        System.gc();
 
         for (int i = 0; i < sorted.size(); i++) {
-            Term t1 = sorted.get(i);
+            //Term t1 = sorted.get(i);
+            Term t1 = loadTerm(sorted.get(i).getID());
             boolean t1_got_combined = false;
 
             for (int k = i; k < sorted.size(); k++) {
                 boolean t2_got_combined = false;
                 //only check two different Terms
                 if (k != i) {
-                    Term t2 = sorted.get(k);
+                    //Term t2 = sorted.get(k);
+                    Term t2 = loadTerm(sorted.get(k).getID());
+                    negationMapping = countNegationsPerTermInString(termTable);
                     //only compare if the negation-classes are neighbors
-                    if (negationMapping.get(t1) - negationMapping.get(t2) == 1) {
+                    if (negationMapping.get(t1.getID()) - negationMapping.get(t2.getID()) == 1) {
                         //only compare if the difference between the terms is one variable
                         if (t1.getCompleteTerm().contains("DoCa")) {
                             //compare with DontCare
@@ -641,6 +655,9 @@ public class Minimizer {
                             }
                         }
                     }
+
+                    t2 = null;
+                    System.gc();
                 }
 
                 if (t2_got_combined) {
@@ -651,6 +668,9 @@ public class Minimizer {
             if (t1_got_combined) {
                 sorted.get(i).setMarked(true);
             }
+
+            t1 = null;
+            System.gc();
         }
 
         for (Term t : sorted) {
@@ -692,11 +712,54 @@ public class Minimizer {
         return mappingNumber_of_Negations;
     }
 
+    private Map<String, Long> countNegationsPerTermInString(List<Term> termTable){
+        Map<String, Long> mappingNumber_of_Negations = new HashMap<>();
+
+        for (Term t : termTable) {
+            String s = t.getCompleteTerm();
+            long number_of_Negation = s.chars().filter(ch -> ch == '~').count();
+            mappingNumber_of_Negations.put(t.getID(), number_of_Negation);
+        }
+        return mappingNumber_of_Negations;
+    }
+
     private void createTermTable() {
         String[] termtable = all_terms_combined.split("\\u002B");
         for (String s : termtable) {
             termTable.add(new Term(s.trim()));
         }
+    }
+
+    private void createTermFiles(List<Term> terms) {
+        for (Term t : terms) {
+            try {
+                FileOutputStream fileOut = new FileOutputStream("Minimizer/term_objects/" + t.getID() + ".ser");
+                ObjectOutputStream stream = new ObjectOutputStream(fileOut);
+
+                stream.writeObject(t);
+
+                stream.close();
+                fileOut.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Term loadTerm(String s) {
+        Term t = null;
+        try {
+            FileInputStream fileIn = new FileInputStream("Minimizer/term_objects/" + s + ".ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+
+            t = (Term) in.readObject();
+
+            in.close();
+            fileIn.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return t;
     }
 
     //getter
