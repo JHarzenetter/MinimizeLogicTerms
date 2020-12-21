@@ -5,9 +5,10 @@ import java.util.*;
 public class Minimizer {
 
     private String all_terms_combined;
-    private int numberofRek = 0;
-    private List<Term> termTable = new ArrayList<>();
-    private List<Term> primeTable = new ArrayList<>();
+    private int numberOfRek = 0;
+    private final List<Term> termTable = new ArrayList<>();
+    private final List<Term> primeTable = new ArrayList<>();
+    private final Map<String, byte[]> bigMemoryMap = new HashMap<>();
 
     public void initialize() {
         try {
@@ -36,7 +37,9 @@ public class Minimizer {
         File[] files = folder.listFiles();
         if (files != null) {
             for (File f : files) {
-                f.delete();
+                if(f.delete()){
+                    System.out.println("Deleted file");
+                }
             }
         }
 
@@ -55,6 +58,7 @@ public class Minimizer {
         return sb.toString();
     }
 
+
     //helper methods below
     public List<Term> compare_combine_Terms_rek(List<Term> termTable) {
 
@@ -62,7 +66,7 @@ public class Minimizer {
         Map<String, Long> negationMapping;
         List<Term> sorted = sortTerms(countNegationsPerTerm(termTable));
 
-        System.out.println("Rekursion number: " + this.numberofRek);
+        System.out.println("Recursion number: " + this.numberOfRek);
         System.out.println("Size of inputList: "+termTable.size());
 
         createTermFiles(termTable);
@@ -72,6 +76,11 @@ public class Minimizer {
             //Term t1 = sorted.get(i);
             Term t1 = loadTerm(sorted.get(i).getID());
             boolean t1_got_combined = false;
+            if(termTable.size() > 1500){
+                    System.out.println("Actual position in outer For: " + i + " in Recursion: "+ this.numberOfRek);
+                if(numberOfRek > 3)
+                    System.out.println("Starting time: "+LocalDateTime.now());
+            }
 
             for (int k = i; k < sorted.size(); k++) {
                 boolean t2_got_combined = false;
@@ -84,7 +93,7 @@ public class Minimizer {
                     if (negationMapping.get(t1.getID()) - negationMapping.get(t2.getID()) == 1) {
                         //only compare if the difference between the terms is one variable
                         if (t1.getCompleteTerm().contains("DoCa")) {
-                            //compare with DontCare
+                            //compare with Don'tCare
                             if (t1.diffEq1(t2)) {
                                 String v_A = null, v_B = null, v_C = null, v_D = null, v_E = null, v_F = null, v_G = null;
                                 t1_got_combined = true;
@@ -581,7 +590,7 @@ public class Minimizer {
                                 }
                             }
                         } else {
-                            //without a DontCare
+                            //without a Don'tCare
                             if (t1.diffEq1(t2)) {
                                 String v_A = null, v_B = null, v_C = null, v_D = null, v_E = null, v_F = null, v_G = null;
                                 t1_got_combined = true;
@@ -661,9 +670,6 @@ public class Minimizer {
                             }
                         }
                     }
-
-                    t2 = null;
-                    System.gc();
                 }
 
                 if (t2_got_combined) {
@@ -674,9 +680,6 @@ public class Minimizer {
             if (t1_got_combined) {
                 sorted.get(i).setMarked(true);
             }
-
-            t1 = null;
-            System.gc();
         }
 
         for (Term t : sorted) {
@@ -685,10 +688,10 @@ public class Minimizer {
             }
         }
 
-        numberofRek++;
+        numberOfRek++;
         System.out.println(LocalDateTime.now());
 
-        // end-statement of recursion:  if no combinings are done in one run, then return the given List
+        // end-statement of recursion:  if no combining is are done in one run, then return the given List
         //                              and add them to primeTable
         if (result.isEmpty()) {
             return termTable;
@@ -733,22 +736,23 @@ public class Minimizer {
     }
 
     private void createTermTable() {
-        String[] termtable = all_terms_combined.split("\\u002B");
-        for (String s : termtable) {
-            termTable.add(new Term(s.trim()));
+        String[] termTable = all_terms_combined.split("\\u002B");
+        for (String s : termTable) {
+            this.termTable.add(new Term(s.trim()));
         }
     }
 
     private void createTermFiles(List<Term> terms) {
         for (Term t : terms) {
-            try {
-                FileOutputStream fileOut = new FileOutputStream("Minimizer/term_objects/" + t.getID() + ".ser");
-                ObjectOutputStream stream = new ObjectOutputStream(fileOut);
 
+            try (ByteArrayOutputStream output = new ByteArrayOutputStream()) {
+                ObjectOutputStream stream = new ObjectOutputStream(output);
                 stream.writeObject(t);
+                stream.flush();
 
-                stream.close();
-                fileOut.close();
+                byte[] bytes = output.toByteArray();
+                bigMemoryMap.put(t.getID(), bytes);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -757,26 +761,23 @@ public class Minimizer {
 
     private Term loadTerm(String s) {
         Term t = null;
-        try {
-            FileInputStream fileIn = new FileInputStream("Minimizer/term_objects/" + s + ".ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
 
+        byte[] yourBytes = bigMemoryMap.get(s);
+
+        ByteArrayInputStream bis = new ByteArrayInputStream(yourBytes);
+        try (ObjectInput in = new ObjectInputStream(bis)) {
             t = (Term) in.readObject();
-
-            in.close();
-            fileIn.close();
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            //
         }
+
         return t;
     }
 
     //getter
     public String getAll_terms_combined() {
         return all_terms_combined;
-    }
-
-    public List<Term> getPrimeTable() {
-        return primeTable;
     }
 }
