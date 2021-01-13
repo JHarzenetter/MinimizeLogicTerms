@@ -53,10 +53,13 @@ public class Minimizer {
         Map<Term, Long> negationMapping = countNegationsPerTerm(termTable);
         List<Term> sorted = sortTerms(negationMapping);
 
+        System.out.println("Recursion number: " + this.numberOfRek);
+        System.out.println("Size of inputList: "+termTable.size());
+
         for (int i = 0; i < sorted.size(); i++) {
             Term t1 = sorted.get(i);
             boolean t1_got_combined = false;
-            if(termTable.size() > 1500){
+            if(termTable.size() > 2000 && i%1000 == 1){
                 System.out.println("Actual position in outer For: " + i + " in Recursion: "+ this.numberOfRek);
                 if(numberOfRek > 3)
                     System.out.println("Starting time: "+ LocalDateTime.now());
@@ -667,7 +670,7 @@ public class Minimizer {
         }
 
         numberOfRek++;
-        System.out.println(LocalDateTime.now());
+        //System.out.println(LocalDateTime.now());
 
         // end-statement of recursion:  if no combinings are done in one run, then return the given List
         //                              and add them to primeTable
