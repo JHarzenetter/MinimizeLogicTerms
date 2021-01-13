@@ -10,6 +10,6 @@ public class Runner {
         long time = System.nanoTime();
         System.out.println(LocalDateTime.now());
         System.out.println(minimizer.create_Prime_Terms());
-        System.out.println("Time in ms: " + ((System.nanoTime()-time)/1000000000));
+        System.out.println("Time in s: " + ((System.nanoTime()-time)/1000000000));
     }
 }

@@ -70,7 +70,6 @@ public class Minimizer {
         System.out.println("Size of inputList: "+termTable.size());
 
         createTermFiles(termTable);
-        System.gc();
 
         for (int i = 0; i < sorted.size(); i++) {
             //Term t1 = sorted.get(i);
